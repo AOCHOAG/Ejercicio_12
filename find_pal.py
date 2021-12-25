@@ -3,9 +3,9 @@
 class FindPal:
     def __init__(self, archivo_palabras, archivo_frases):
         ap = open(archivo_palabras, "r")
-        self.palabras = []
+        self.palabras = {}
         for linea in ap:
-            self.palabras.append(linea.strip())
+            self.palabras[linea.strip()] = []
         ap.close()
 
         af = open(archivo_frases, "r")
@@ -14,15 +14,15 @@ class FindPal:
             self.frases.append(linea.strip())
         af.close()
 
+
     def encuentra_palabras(self):
 
         palabras = self.palabras
         frases = self.frases
         for pal in palabras:
             for f in frases:
-                palabras[pal].append(f.count(pal))
+                palabras[pal].append(f.lower().count(pal))
         return palabras
-
 
 
 
